@@ -66,7 +66,7 @@
 
 				<div class="mb-4">
 					<label for="message" class="form-label">Message</label>
-					<textarea class="form-control" id="message" name="message" rows="5" placeholder="What are you building, and what do you need help with?" name = "messsage" required></textarea>
+					<textarea class="form-control" id="message" name="message" rows="5" placeholder="What are you building, and what do you need help with?" required></textarea>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Send message</button>
