@@ -1,0 +1,74 @@
+.space-grotesk{
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+/* FONT SIZES */
+
+.header-1{
+	font-size: 3rem;
+	font-weight: 50%;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.footer + h5{
+	font-color: white;
+}
+
+.footer-middle{
+	display: grid;
+	align-items: center;
+}
+
+.card {
+	transition: all 0.3s;
+}
+.card:hover{
+	transform: scale(1.10);
+}
+
+li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style: none;
+}
+
+.image-fix{
+	width: 100px;
+	height: auto;
+}
+
+.image-size{
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	object-position: position;
+	width: 350px;
+}
+
+.image-about {
+  width: 250px;   
+  height: auto;
+  text-align: end;
+}
+
+.col{
+	width: auto;
+	height: auto;
+}
+
+.text-left{
+	text-align: start;
+}
+
+body.space-grotesk,
+body.space-grotesk * {
+  font-family: 'Space Grotesk', sans-serif;
+}
