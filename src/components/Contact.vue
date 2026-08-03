@@ -13,6 +13,12 @@
 	const WEB3FORMS_ACCESS_KEY = "bb791158-1242-419a-8732-8ba382ad48d7";
 	const subject = "A User Sent a message from your WebPortfolio";
 
+	const SITE_KEY = "6Le5IHMtAAAAAOePlkeZjLhVO4M0LpMOBZxn04xs";
+
+	const recaptchaContainer = ref(null);
+	const recaptchaWidgetId = ref(null);
+	const recaptchaToken = ref('');
+
 	const submitForm = async () => {
 		try{
 			const response = await fetch("https://api.web3forms.com/submit", {
@@ -43,6 +49,53 @@
 			notyf.error("Failed to send message");
 		}
 	}
+
+// Callback called by reCAPTCHA when successful
+function onRecaptchaSuccess(token) {
+  recaptchaToken.value = token;
+}
+
+// Callback when expired
+function onRecaptchaExpired() {
+  recaptchaToken.value = '';
+}
+
+// Function to render the reCAPTCHA widget
+function renderRecaptcha() {
+  if (!window.grecaptcha) {
+    console.error('reCAPTCHA not loaded');
+    return;
+  }
+
+  recaptchaWidgetId.value = window.grecaptcha.render(recaptchaContainer.value, {
+    sitekey: SITE_KEY,
+    size: 'normal', // or 'compact'
+    callback: onRecaptchaSuccess,
+    'expired-callback': onRecaptchaExpired,
+  });
+}
+
+// Function to reset reCAPTCHA 
+function resetRecaptcha() {
+  if (recaptchaWidgetId.value !== null) {
+    window.grecaptcha.reset(recaptchaWidgetId.value);
+    recaptchaToken.value = '';
+  }
+}
+
+onMounted(()=> {
+		const interval = setInterval(() => {
+			if(window.grecaptcha && window.grecaptcha.render){
+				renderRecaptcha();
+				clearInterval(interval);
+			}
+		}, 100);
+
+		onBeforeUnmount(()=> {
+			clearInterval(interval);
+		})
+	})
+	
 </script>
 
 <template>
@@ -70,6 +123,11 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary">Send message</button>
+
+				<div class="d-flex justify-content-center mt-2">
+	                <div ref="recaptchaContainer"></div>
+	            </div>
+
 			</form>
 		</div>
 	</div>
