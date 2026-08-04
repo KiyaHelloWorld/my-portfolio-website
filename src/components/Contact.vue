@@ -51,17 +51,14 @@
 		}
 	}
 
-// Callback called by reCAPTCHA when successful
 function onRecaptchaSuccess(token) {
   recaptchaToken.value = token;
 }
 
-// Callback when expired
 function onRecaptchaExpired() {
   recaptchaToken.value = '';
 }
 
-// Function to render the reCAPTCHA widget
 function renderRecaptcha() {
   if (!window.grecaptcha) {
     console.error('reCAPTCHA not loaded');
@@ -76,7 +73,6 @@ function renderRecaptcha() {
   });
 }
 
-// Function to reset reCAPTCHA 
 function resetRecaptcha() {
   if (recaptchaWidgetId.value !== null) {
     window.grecaptcha.reset(recaptchaWidgetId.value);
