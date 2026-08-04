@@ -102,8 +102,7 @@ onMounted(()=> {
 			<h1 class="mb-2">Get in touch</h1>
 			<p class="text-muted mb-4">Have a project in mind or a role to fill? Send a message and I'll reply within a day or two.</p>
 
-			<form action="https://api.web3forms.com/submit" method="POST">
-	            	<input type="hidden" name="access_key" value="4e0dba34-036a-4c1a-847d-2a3245797145">
+			<form @submit.prevent="submitForm" method="POST">
 				<div class="mb-3">
 					<label for="name" class="form-label">Name</label>
 					<input type="text" class="form-control" id="name" name="name" placeholder="Jane Doe" required>
